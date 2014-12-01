@@ -16,17 +16,12 @@ A group type definition is declared in the module header file and is a list of t
 {
    // Initialise the module data.
    void (*MotorInit)(void);
-
    // Start the motor rotating at the given speed and direction.
    int (*Start)(int speed, int direction);
-
    // Decelerate the motor to a stop.
    int (*Stop)(int decelRate);
-   
 } MotorGroup;
-
 typedef const MotorGroup* MotorGroupPointer;
-
 extern const MotorGroup GMotor;</pre>
 
 The actual instance of this MotorGroup called GMotor is declared in the code file itself, typically after all the matching public functions have been declared so there is no need for forward declarations. I usually place it at the very end. For this example it would look like:
@@ -63,5 +58,5 @@ Note that the order of the function pointer declarations must exactly match the 
 
 This would normally be very dangerous. However, I have written an executable that is passed the path to a file containing a list of all directories associated with the project. It then examines each header file it finds for whether it contains a GROUP definition and if so, searches for the corresponding instance definition in the associated code file. It then verifies that the function names appear in matching order in both places. A call to this executable can be included in the normal project compile sequence, or just run from time to time.
 
-7-11-2014
+1-12-2014
 
